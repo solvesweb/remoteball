@@ -1,4 +1,4 @@
-import { AddOutlined } from "@mui/icons-material";
+import { AddOutlined, Delete, Edit} from "@mui/icons-material";
 import {
   Grid,
   IconButton,
@@ -13,10 +13,18 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { startNewReport } from "../../store/app";
+import { useDispatch, useSelector } from "react-redux";
 
 export const MyReports = () => {
+  const dispatch = useDispatch();
+  const { reports } = useSelector((state) => state.app);
+
+  const onClikNewReport = () => {
+    dispatch(startNewReport());
+  };
   return (
-    <Grid container spacing={2} direction="column" maxWidth='lg'>
+    <Grid container spacing={2} direction="column" maxWidth="lg">
       <Grid item sx={{ m: 2 }}>
         <Typography variant="h4">Mis Informes</Typography>
       </Grid>
@@ -28,80 +36,49 @@ export const MyReports = () => {
           placeholder="Búsqueda de Jugador"
         />
       </Grid>
-      <Grid item sx={{ m: 2 }}>      
+      <Grid item sx={{ m: 2 }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 500 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <TableCell>Jugador</TableCell>
-                <TableCell align="right">Club</TableCell>
-                <TableCell align="right">Edad</TableCell>
-                <TableCell align="right">Nacionalidad</TableCell>
-                <TableCell align="right">Fecha Informe</TableCell>
+                <TableCell align="center">Jugador</TableCell>
+                <TableCell align="center">Club</TableCell>
+                <TableCell align="center">Edad</TableCell>
+                <TableCell align="center">Nacionalidad</TableCell>
+                <TableCell align="center">Fecha Informe</TableCell>
+                <TableCell align="center">Editar/Borrar</TableCell>
               </TableRow>
             </TableHead>
+
             <TableBody>
-              <TableRow>
-                <TableCell component="th">
-                  Messi
-                </TableCell>
-                <TableCell align="right">Inter Miami</TableCell>
-                <TableCell align="right">36</TableCell>
-                <TableCell align="right">Argentina</TableCell>
-                <TableCell align="right">12/9/2023</TableCell>
-              </TableRow>
-            </TableBody>
-            <TableBody>
-              <TableRow>
-                <TableCell component="th">
-                  Messi
-                </TableCell>
-                <TableCell align="right">Inter Miami</TableCell>
-                <TableCell align="right">36</TableCell>
-                <TableCell align="right">Argentina</TableCell>
-                <TableCell align="right">12/9/2023</TableCell>
-              </TableRow>
-            </TableBody>
-            <TableBody>
-              <TableRow>
-                <TableCell component="th">
-                  Messi
-                </TableCell>
-                <TableCell align="right">Inter Miami</TableCell>
-                <TableCell align="right">36</TableCell>
-                <TableCell align="right">Argentina</TableCell>
-                <TableCell align="right">12/9/2023</TableCell>
-              </TableRow>
-            </TableBody>
-            <TableBody>
-              <TableRow>
-                <TableCell component="th">
-                  Messi
-                </TableCell>
-                <TableCell align="right">Inter Miami</TableCell>
-                <TableCell align="right">36</TableCell>
-                <TableCell align="right">Argentina</TableCell>
-                <TableCell align="right">12/9/2023</TableCell>
-              </TableRow>
-            </TableBody>
-            <TableBody>
-              <TableRow>
-                <TableCell component="th">
-                  Messi
-                </TableCell>
-                <TableCell align="right">Inter Miami</TableCell>
-                <TableCell align="right">36</TableCell>
-                <TableCell align="right">Argentina</TableCell>
-                <TableCell align="right">12/9/2023</TableCell>
-              </TableRow>
+              {reports.map((report) => (
+                <TableRow key={report.id}>
+                  <TableCell align="center" component="th" scope="row">
+                    <Link href="#"  sx={{color:'dark.main'}}>{report.name}</Link>
+                  </TableCell>
+                  <TableCell align="center">{report.club}</TableCell>
+                  <TableCell align="center">{report.age}</TableCell>
+                  <TableCell align="center">{report.nationality}</TableCell>
+                  <TableCell align="center">{report.date}</TableCell>
+
+                  <TableCell align="center">
+                    <IconButton aria-label="delete" size="small" >
+                      <Edit fontSize="inherit" />
+                    </IconButton>
+                    <IconButton aria-label="delete" size="small" color="error">
+                      <Delete fontSize="inherit" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Grid>
-      
-      <Link to="/new-report">
 
+      <Link to="/new-report">
         <IconButton
+          onClick={onClikNewReport}
           size="large"
           sx={{
             color: "light.main",
@@ -112,7 +89,6 @@ export const MyReports = () => {
             bottom: 50,
           }}
         >
-          
           <AddOutlined sx={{ fontSize: 30 }} />
         </IconButton>
       </Link>

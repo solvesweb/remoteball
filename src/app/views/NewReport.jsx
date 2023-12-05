@@ -277,12 +277,12 @@ export const NewReport = () => {
             </Typography>
             <Grid>
               <TextField
-                id="outlined-multiline-flexible"
+                id="filled-multiline-flexible"
                 label="Describe al jugador"
                 variant="filled"
                 multiline
-                maxRows={4}
-                sx={{ minWidth: 300 }}
+                maxRows={10}
+                sx={{ minWidth: 600}}
               />
             </Grid>
           </Grid>

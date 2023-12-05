@@ -8,10 +8,23 @@ import { LandingLayout } from "../auth/layout/LandingLayout";
 import { ReportLayout } from "../app/layout/ReportLayout";
 import { Login } from "../auth/views/Login";
 
+import { CheckingAuth } from "../ui/components/CheckingAuth";
+import { useCheckAuth } from "../hooks";
+import { Prueba } from "../app/views/Prueba";
+import { Prueba2 } from "../app/views/Prueba2";
+
 export const AppRouter = () => {
+  const status = useCheckAuth()
+
+  if (status === "checking") {
+    return <CheckingAuth />;
+  }
+
   return (
     <Routes>
-      {/* Landing */}
+
+           
+      
       <Route
         path="/*"
         element={
@@ -29,7 +42,7 @@ export const AppRouter = () => {
         }
       />
 
-      {/* App */}
+      
       <Route
         path="/app"
         element={
@@ -50,7 +63,9 @@ export const AppRouter = () => {
         path="/new-report"
         element={
           <ReportLayout>
-            <NewReport />
+            {/* <NewReport /> */}
+            
+            <Prueba />
           </ReportLayout>
         }
       />

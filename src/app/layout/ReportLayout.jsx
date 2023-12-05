@@ -11,7 +11,7 @@ export const ReportLayout = ({ children }) => {
   };
   
     return (
-      <Box sx={{ display: "flex"}}>
+      <Box sx={{ display: "flex", minHeight: '100vh'}}>
         <NavBar  action={handleMenuButtonClick}/>
         <SideBar  open={isSideBarOpen} onClose={() => setIsSideBarOpen(false)}/>
 

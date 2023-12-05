@@ -1,20 +1,24 @@
 import { createTheme } from "@mui/material";
 
-export const orangeTheme = createTheme({
+export const primaryTheme = createTheme({
   palette: {
     primary: {
-      main: "#F9A620",
+      main: "#FF8E3C",
     },
     secondary: {
-      main: "#69A297",
+      main: "#FCAF58",
     },
 
     light: {
-      main: "#FCF7FF",
+      main: "#FFF3EB",
     },
 
     dark: {
-      main: "#04151F",
+      main: "#264653",
+    },
+
+    gray: {
+      main: "#4C5760",
     },
     error: {
       main: "#EF233C",

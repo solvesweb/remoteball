@@ -4,7 +4,7 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 export const NavBar = ({action}) => {
   return (
     <Box>
-      <AppBar position="fixed" >
+      <AppBar position="fixed">
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <IconButton
             size="large"
@@ -24,26 +24,3 @@ export const NavBar = ({action}) => {
     </Box>
   );
 };
-
-{
-  /* <AppBar
-      position="fixed"
-      sx={{
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
-        ml: { sm: `${drawerWidth}px` },
-      }}
-    >
-      <Toolbar>
-        <IconButton color="inherit" sx={{ mr: 2, display: { sm: "none" } }}>
-          <MenuOutlined />
-        </IconButton>
-
-        <Grid container direction="row" justifyContent="space-between" alignItems='center'>
-          <Typography variant="h6" noWrap component='div' >RemoteBall</Typography>
-          <IconButton>
-            <LogoutOutlined />
-          </IconButton>
-        </Grid>
-      </Toolbar>
-    </AppBar> */
-}

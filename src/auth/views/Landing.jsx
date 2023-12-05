@@ -1,20 +1,18 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button,  Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import bgImage from "../../assets/background.jpg";
 
 export const Landing = () => {
   return (
     <Grid
       container
-      spacing={8}
+      spacing={6}
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      height='100vh'
-      sx={{ px: 10, minWidth: '100vh' }}
+      sx={{py: '8%',px: '10%', minHeight: '100vh'}}
     >
-      <Grid item>
+      <Grid item >
         <Typography
           variant="h3"
           sx={{ textTransform: "uppercase", textAlign: "center" }}
@@ -23,12 +21,18 @@ export const Landing = () => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h4" sx={{ textTransform: "uppercase", textAlign: "center" }}>
+        <Typography
+          variant="h4"
+          sx={{ textTransform: "uppercase", textAlign: "center" }}
+        >
           Crea, edita y comparte tus informes
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h5" sx={{ textTransform: "uppercase", textAlign: "center" }}>
+        <Typography
+          variant="h5"
+          sx={{ textTransform: "uppercase", textAlign: "center" }}
+        >
           Y si eres un Club, encuentra el jugador ideal para tu equipo
         </Typography>
       </Grid>

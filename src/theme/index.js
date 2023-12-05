@@ -1,2 +1,2 @@
 export * from './AppTheme'
-export * from './orangeTheme'
+export * from './primaryTheme'
