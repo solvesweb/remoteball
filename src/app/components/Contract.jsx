@@ -25,7 +25,7 @@ export const Contract = ({ name, control, label }) => {
         <Grid item>
           <InputNumberField
             label={"Valor de Mercado en €"}
-            name={"value"}
+            name={"marketValue"}
             control={control}
           />
         </Grid>

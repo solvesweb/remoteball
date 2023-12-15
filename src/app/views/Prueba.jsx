@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
 import { ReportData } from "../components/ReportData";
-import { Button, Grid} from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { PlayerData } from "../components/PlayerData";
 import { Contract } from "../components/Contract";
 import { Honours } from "../components/Honours";
 import { Position } from "../components/Position";
 import { PlayerDetails } from "../components/PlayerDescription";
+import { VideoReport } from "../components/VideoReport";
+import { FirebaseDB } from "../../firebase/config";
+import { collection, addDoc } from "firebase/firestore/lite";
+import { getAuth } from "firebase/auth";
 
 export const Prueba = () => {
   const { control, handleSubmit } = useForm({
@@ -16,25 +20,42 @@ export const Prueba = () => {
       name: "",
       lastname: "",
       nickname: "",
+      marketValue: 0,
       matches: 1,
       city: "",
       date: "",
-      weight: 0,
-      height: 0,
+      weight: 1,
+      height: 1,
       number: 0,
       nationality: "",
       birthdate: "",
       contractEnd: "",
-      value: 0,
       agent: "",
       honours: [],
-      position: ""
+      position: "",
+      positionSecondary: "",
+      description: "",
+      video: "",
+      technicalAttributes: [],
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user.uid;
+    console.log(uid);
+
+    const finalData = {
+      ...data,
+    };
+
+    const reportsRef = collection(FirebaseDB, `users/${uid}/reports`);
+
+    addDoc(reportsRef, finalData);
   };
+
   return (
     <Grid
       container
@@ -58,6 +79,16 @@ export const Prueba = () => {
 
           <PlayerDetails control={control} />
 
+          {/* <Typography variant="h5" sx={{ mt: 4 }}>Atributos del Jugador</Typography>
+
+          <AttributesData title={"Atributos Técnicos"} control={control} attributes={technicalAttributes} />
+          <AttributesData title={"Atributos Tácticos"} control={control} attributes={tacticalAttributes} />
+         
+          <AttributesData title={"Atributos Físicos"} control={control} />
+          <AttributesData title={"Atributos Tácticos"} control={control} />
+          <AttributesData title={"Atributos Mentales"} control={control} /> */}
+
+          <VideoReport control={control} />
 
           <Button type="submit" variant="contained" sx={{ mt: 4 }}>
             Enviar
